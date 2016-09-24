@@ -17,11 +17,9 @@ class sapper {
     int *plants;
     byte gameOver = 0;
     int counter = 0;
-    const byte FIELD_FLAG = 254;
-    const byte FIELD_CLOSED = 255;
     enum Constants {
-        //FIELD_FLAG = -2,
-        //FIELD_CLOSED = -1,
+        FIELD_FLAG = 254,
+        FIELD_CLOSED = 255,
         FIELD_ZERO = 0,
         FIELD_BOMB = 9,
         ACT_OPEN = 0,
