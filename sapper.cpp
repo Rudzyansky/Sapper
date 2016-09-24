@@ -20,11 +20,11 @@ sapper::sapper(const int w, const int h, const int bombs) {
     this->w = w;
     this->h = h;
     plants = new int[bombs];
-    field = new int *[h];
-    field2 = new int *[h];
+    field = new byte *[h];
+    field2 = new byte *[h];
     for (int i = 0; i < h; ++i) {
-        field[i] = new int[w];
-        field2[i] = new int[w];
+        field[i] = new byte[w];
+        field2[i] = new byte[w];
         for (int j = 0; j < w; ++j) {
             field[i][j] = 0;
             field2[i][j] = FIELD_CLOSED;
@@ -99,7 +99,7 @@ void sapper::move(const int i, const int j, const int action) {
 
 void sapper::repaint() {
     system("clear");
-    int tmp;
+    byte tmp;
     for (int i = 0; i < h; ++i) {
         for (int j = 0; j < w; ++j) {
             tmp = field2[i][j];

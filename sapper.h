@@ -7,17 +7,21 @@ using namespace std;
 using std::cout;
 using std::endl;
 
+typedef unsigned char byte;
+
 class sapper {
     int w, h;
-    int **field;
-    int **field2;
+    byte **field;
+    byte **field2;
     int bombs;
     int *plants;
-    int gameOver = 0;
+    byte gameOver = 0;
     int counter = 0;
+    const byte FIELD_FLAG = 254;
+    const byte FIELD_CLOSED = 255;
     enum Constants {
-        FIELD_FLAG = -2,
-        FIELD_CLOSED = -1,
+        //FIELD_FLAG = -2,
+        //FIELD_CLOSED = -1,
         FIELD_ZERO = 0,
         FIELD_BOMB = 9,
         ACT_OPEN = 0,
