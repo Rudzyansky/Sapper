@@ -56,6 +56,8 @@ sapper::sapper(const int w, const int h, const int bombs) {
 
 sapper::~sapper() {
     delete field;
+    delete field2;
+    delete plants;
 }
 
 void sapper::move(const int i, const int j, const int action) {
@@ -98,7 +100,7 @@ void sapper::move(const int i, const int j, const int action) {
 }
 
 void sapper::repaint() {
-    system("clear");
+    if (!system("clear")) system("cls");
     byte tmp;
     for (int i = 0; i < h; ++i) {
         for (int j = 0; j < w; ++j) {
