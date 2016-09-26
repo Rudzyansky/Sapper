@@ -100,7 +100,7 @@ void sapper::move(const int i, const int j, const int action) {
 }
 
 void sapper::repaint() {
-    if (!system("clear")) system("cls");
+    system("clear");
     byte tmp;
     for (int i = 0; i < h; ++i) {
         for (int j = 0; j < w; ++j) {
