@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -Wmultichar -lncursesw -g   CMakeFiles/sapper.dir/main.cpp.o CMakeFiles/sapper.dir/Sapper.cpp.o  -o sapper 

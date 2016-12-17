@@ -1,21 +1,30 @@
-#include "sapper.h"
+#include "Sapper.h"
+#include <iostream>
 
-#pragma clang diagnostic push
 #pragma ide diagnostic ignored "CannotResolve"
+#pragma ide diagnostic ignored "missing_default_case"
 
-sapper::sapper() {
-    sapper(10, 10, 10);
+using namespace std;
+
+Sapper::Sapper() {
+    Sapper(10, 10, 10);
 }
 
-sapper::sapper(const int bombs) {
-    sapper(10, 10, bombs);
+Sapper::Sapper(const int bombs) {
+    Sapper(10, 10, bombs);
 }
 
-sapper::sapper(const int w, const int h) {
-    sapper(w, h, 10);
+Sapper::~Sapper() {
+    for (int i = 0; i < h; ++i) {
+        delete[] field[i];
+        delete[] field2[i];
+    }
+    delete[] field;
+    delete[] field2;
+    delete[] plants;
 }
 
-sapper::sapper(const int w, const int h, const int bombs) {
+Sapper::Sapper(const int w, const int h, const int bombs) {
     this->bombs = bombs;
     this->w = w;
     this->h = h;
@@ -39,7 +48,7 @@ sapper::sapper(const int w, const int h, const int bombs) {
         }
     }
     for (int i = 0; i < bombs; ++i) {
-        int m = plants[i] / h;
+        int m = plants[i] / w;
         int n = plants[i] % w;
         field[m][n] = FIELD_BOMB;
         for (int k = m - 1; k < m + 2; ++k) {
@@ -54,15 +63,7 @@ sapper::sapper(const int w, const int h, const int bombs) {
     exec();
 }
 
-sapper::~sapper() {
-    delete field;
-    delete field2;
-    delete plants;
-}
-
-void sapper::move(const int i, const int j, const int action) {
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "missing_default_case"
+void Sapper::move(const int i, const int j, const int action) {
     switch (action) {
         case ACT_OPEN:
             if (field2[i][j] == FIELD_FLAG) return;
@@ -96,16 +97,21 @@ void sapper::move(const int i, const int j, const int action) {
             field2[i][j] = field2[i][j] == FIELD_FLAG ? FIELD_CLOSED : FIELD_FLAG;
             return;
     }
-#pragma clang diagnostic pop
 }
 
-void sapper::repaint() {
+void Sapper::repaint() {
     system("clear");
     byte tmp;
     for (int i = 0; i < h; ++i) {
         for (int j = 0; j < w; ++j) {
             tmp = field2[i][j];
-            cout << (char) (tmp == FIELD_CLOSED ? '-' : tmp == FIELD_FLAG ? 'F' : tmp == FIELD_BOMB ? '*' : tmp == FIELD_ZERO ? ' ' : tmp + 48) << " ";
+            cout << (char) (
+                    tmp == FIELD_CLOSED ? '-' :
+                    tmp == FIELD_FLAG ? 'F' :
+                    tmp == FIELD_BOMB ? '*' :
+                    tmp == FIELD_ZERO ? ' ' :
+                    tmp + 48
+            ) << " ";
         }
         cout << "| " << i + 1 << endl;
     }
@@ -115,7 +121,7 @@ void sapper::repaint() {
     cout << endl;
 }
 
-void sapper::exec() {
+void Sapper::exec() {
     string buff;
     while (!gameOver) {
         repaint();
@@ -138,10 +144,13 @@ void sapper::exec() {
         move(tmp[1] - 1, tmp[0] - 1, tmp[2]);
     }
     repaint();
-    cout << (gameOver == REASON_WIN ? "You are WIN!!!" : gameOver == REASON_BOMB ? "You are loose :'(" : "It is impossible! How did you do this?") << endl;
+    cout << (gameOver == REASON_WIN ? "You are WIN!!!" :
+             gameOver == REASON_BOMB ? "You are loose :'("
+                                     : "It is impossible! How did you do this?")
+         << endl;
 }
 
-int sapper::natNumberTextToInt(const char *text) {
+int Sapper::natNumberTextToInt(const char *text) {
     if (*text == 0) return -1;
     int out = 0;
     for (int i = 0; *(text + i) != 0; ++i) {
@@ -151,5 +160,3 @@ int sapper::natNumberTextToInt(const char *text) {
     }
     return out;
 }
-
-#pragma clang diagnostic pop

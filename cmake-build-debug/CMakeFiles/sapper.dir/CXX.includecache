@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/admin/workspace/ClionProjects/sapper/Sapper.cpp
+Sapper.h
+/home/admin/workspace/ClionProjects/sapper/Sapper.h
+iostream
+-
+
+/home/admin/workspace/ClionProjects/sapper/Sapper.h
+
+/home/admin/workspace/ClionProjects/sapper/main.cpp
+Sapper.h
+/home/admin/workspace/ClionProjects/sapper/Sapper.h
+

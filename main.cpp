@@ -1,6 +1,6 @@
-#include "sapper.h"
+#include "Sapper.h"
 
 int main() {
-    new sapper();
+    new Sapper(20, 15, 30);
     return 0;
 }
