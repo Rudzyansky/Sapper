@@ -22,13 +22,13 @@ class Sapper {
         REASON_BOMB = 2
     };
     void exec();
+    void repaint();
     int natNumberTextToInt(const char *text);
+    void move(const int i, const int j, const int action);
 public:
     Sapper();
     Sapper(const int bombs);
     Sapper(const int w, const int h, const int bombs);
-    void move(const int i, const int j, const int action);
-    void repaint();
     ~Sapper();
 };
 
