@@ -113,11 +113,11 @@ void Sapper::repaint() {
                     tmp + 48
             ) << " ";
         }
-        cout << "| " << i + 1 << endl;
+        cout << "| " << (i + 1) % 10 << endl;
     }
     for (int j = 1; j <= w; ++j) cout << '-' << '-';
     cout << endl;
-    for (int j = 1; j <= w; ++j) cout << j << ' ';
+    for (int j = 1; j <= w; ++j) cout << j % 10 << ' ';
     cout << endl;
 }
 
