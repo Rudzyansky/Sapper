@@ -70,7 +70,7 @@ void Sapper::move(const int i, const int j, const int action) {
             if (field[i][j] == FIELD_BOMB) {
                 gameOver = REASON_BOMB;
                 for (int m = 0; m < bombs; ++m) {
-                    field2[plants[m] / h][plants[m] % w] = FIELD_BOMB;
+                    field2[plants[m] / w][plants[m] % w] = FIELD_BOMB;
                 }
                 return;
             }
@@ -88,7 +88,7 @@ void Sapper::move(const int i, const int j, const int action) {
             if (++counter == w * h - bombs) {
                 gameOver = REASON_WIN;
                 for (int m = 0; m < bombs; ++m) {
-                    field2[plants[m] / h][plants[m] % w] = FIELD_FLAG;
+                    field2[plants[m] / w][plants[m] % w] = FIELD_FLAG;
                 }
             }
             return;
@@ -138,8 +138,8 @@ void Sapper::exec() {
             buff.erase(0, buff.find(' ') + 1);
             tmp[i] = natNumberTextToInt(temp.data());
         }
-        if (tmp[1] < 1 || tmp[1] > w) continue;
-        if (tmp[0] < 1 || tmp[0] > h) continue;
+        if (tmp[0] < 1 || tmp[0] > w) continue;
+        if (tmp[1] < 1 || tmp[1] > h) continue;
         if (tmp[2] < 0 || tmp[2] > 1) continue;
         move(tmp[1] - 1, tmp[0] - 1, tmp[2]);
     }
